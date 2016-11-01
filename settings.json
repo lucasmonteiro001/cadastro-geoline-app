@@ -1,0 +1,19 @@
+{
+  "public": {
+    "api": {
+      "login": "http://192.168.0.5:3000/api/login",
+      "salvar_entrevista" : "http://192.168.0.5:3000/api/salvarEntrevistas/",
+      "pesquisas": "http://192.168.0.5:3000/api/pesquisas"
+    },
+    "api": {
+      "login": "http://localhost:3000/api/login",
+      "salvar_entrevista" : "http://localhost:3000/api/salvarEntrevistas/",
+      "pesquisas": "http://localhost:3000/api/pesquisas"
+    },
+    "api": {
+      "login": "http://45.55.141.193:3000/api/login",
+      "salvar_entrevista" : "http://45.55.141.193:3000/api/salvarEntrevistas/",
+      "pesquisas": "http://45.55.141.193:3000/api/pesquisas"
+    }
+  }
+}
