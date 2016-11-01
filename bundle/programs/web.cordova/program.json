@@ -2,13 +2,13 @@
   "format": "web-program-pre1",
   "manifest": [
     {
-      "path": "511e95cf16e7183a3cc76c07448330cf825433a4.js",
+      "path": "503359cf4524840747264c1a54c534b612a8da5a.js",
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/511e95cf16e7183a3cc76c07448330cf825433a4.js?meteor_js_resource=true",
-      "size": 1255919,
-      "hash": "511e95cf16e7183a3cc76c07448330cf825433a4"
+      "url": "/503359cf4524840747264c1a54c534b612a8da5a.js?meteor_js_resource=true",
+      "size": 1255842,
+      "hash": "503359cf4524840747264c1a54c534b612a8da5a"
     },
     {
       "path": "cd4144759a16c8c73315c50929a0325637d23c20.css",
