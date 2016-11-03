@@ -119,5 +119,3 @@ if (typeof Package === 'undefined') Package = {};
 });
 
 })();
-
-//# sourceMappingURL=froatsnook_request.js.map

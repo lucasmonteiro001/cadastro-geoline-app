@@ -169,5 +169,3 @@ if (typeof Package === 'undefined') Package = {};
 });
 
 })();
-
-//# sourceMappingURL=anti_i18n.js.map

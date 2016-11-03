@@ -10,72 +10,92 @@ var Pesquisas;module.import("./../pesquisas.js",{"Pesquisas":function(v){Pesquis
                                                                                                                 // 2
                                                                                                                 //
 Meteor.methods({                                                                                                // 4
-    'pesquisas.sincronizar': function pesquisasSincronizar() {                                                  // 5
+    'pesquisas.sincronizar': function () {                                                                      // 5
+        function pesquisasSincronizar() {                                                                       // 4
                                                                                                                 //
-        console.warn('Nesse momento, os dados devem ser sincronizados com o servidor, conferidos e então' + ' apagar a collection local!');
+            console.warn('Nesse momento, os dados devem ser sincronizados com o servidor, conferidos e então' + ' apagar a collection local!');
                                                                                                                 //
-        Pesquisas.remove({});                                                                                   // 10
-    },                                                                                                          // 12
-    'pesquisas.insertDummy': function pesquisasInsertDummy() {                                                  // 13
-        Pesquisas.insert({                                                                                      // 14
-            entrevistadores: ['entrevistador1-id'],                                                             // 15
-            status: 'aberta',                                                                                   // 16
-            bairros: ['bairro1', 'bairro2'],                                                                    // 17
-            entrevistas: [{                                                                                     // 18
-                bairro: "bairro1",                                                                              // 20
-                dataHora: new Date().valueOf(), // timestamp                                                    // 21
-                localizacao: {                                                                                  // 22
-                    latitude: 1,                                                                                // 23
-                    longitutde: 1                                                                               // 24
-                }                                                                                               // 22
-            }, {                                                                                                // 19
-                bairro: "bairro1",                                                                              // 28
-                dataHora: new Date().valueOf(), // timestamp                                                    // 29
-                localizacao: {                                                                                  // 30
-                    latitude: 1,                                                                                // 31
-                    longitutde: 1                                                                               // 32
-                }                                                                                               // 30
-            }, {                                                                                                // 27
-                bairro: "bairro2",                                                                              // 36
-                dataHora: new Date().valueOf(), // timestamp                                                    // 37
-                localizacao: {                                                                                  // 38
-                    latitude: 1,                                                                                // 39
-                    longitutde: 1                                                                               // 40
-                }                                                                                               // 38
-            }]                                                                                                  // 35
-        });                                                                                                     // 14
-    },                                                                                                          // 45
-    'pesquisas.insert': function pesquisasInsert(dataObj) {                                                     // 46
+            Pesquisas.remove({});                                                                               // 10
+        }                                                                                                       // 12
                                                                                                                 //
-        // dataObj.userId = Meteor.userId();                                                                    //
+        return pesquisasSincronizar;                                                                            // 4
+    }(),                                                                                                        // 4
+    'pesquisas.insertDummy': function () {                                                                      // 13
+        function pesquisasInsertDummy() {                                                                       // 4
+            Pesquisas.insert({                                                                                  // 14
+                entrevistadores: ['entrevistador1-id'],                                                         // 15
+                status: 'aberta',                                                                               // 16
+                bairros: ['bairro1', 'bairro2'],                                                                // 17
+                entrevistas: [{                                                                                 // 18
+                    bairro: "bairro1",                                                                          // 20
+                    dataHora: new Date().valueOf(), // timestamp                                                // 21
+                    localizacao: {                                                                              // 22
+                        latitude: 1,                                                                            // 23
+                        longitutde: 1                                                                           // 24
+                    }                                                                                           // 22
+                }, {                                                                                            // 19
+                    bairro: "bairro1",                                                                          // 28
+                    dataHora: new Date().valueOf(), // timestamp                                                // 29
+                    localizacao: {                                                                              // 30
+                        latitude: 1,                                                                            // 31
+                        longitutde: 1                                                                           // 32
+                    }                                                                                           // 30
+                }, {                                                                                            // 27
+                    bairro: "bairro2",                                                                          // 36
+                    dataHora: new Date().valueOf(), // timestamp                                                // 37
+                    localizacao: {                                                                              // 38
+                        latitude: 1,                                                                            // 39
+                        longitutde: 1                                                                           // 40
+                    }                                                                                           // 38
+                }]                                                                                              // 35
+            });                                                                                                 // 14
+        }                                                                                                       // 45
                                                                                                                 //
-        console.warn('implementar pesquisas.insert');return;                                                    // 50
+        return pesquisasInsertDummy;                                                                            // 4
+    }(),                                                                                                        // 4
+    'pesquisas.insert': function () {                                                                           // 46
+        function pesquisasInsert(dataObj) {                                                                     // 4
                                                                                                                 //
-        // check(dataObj, Pesquisas.simpleSchema());                                                            //
+            // dataObj.userId = Meteor.userId();                                                                // 48
                                                                                                                 //
-        Pesquisas.insert(dataObj, function (error) {                                                            // 54
-            if (error) {                                                                                        // 55
-                console.log(error);                                                                             // 56
-            }                                                                                                   // 57
-        });                                                                                                     // 58
-    },                                                                                                          // 59
-    'pesquisas.update': function pesquisasUpdate(id, dataObj) {                                                 // 60
+            console.warn('implementar pesquisas.insert');return;                                                // 50
                                                                                                                 //
-        console.warn('implementar pesquisas.update');return;                                                    // 62
+            // check(dataObj, Pesquisas.simpleSchema());                                                        // 52
                                                                                                                 //
-        // check(id, String);                                                                                   //
-        // check(dataObj, Pesquisas.simpleSchema());                                                            //
+            Pesquisas.insert(dataObj, function (error) {                                                        // 54
+                if (error) {                                                                                    // 55
+                    console.log(error);                                                                         // 56
+                }                                                                                               // 57
+            });                                                                                                 // 58
+        }                                                                                                       // 59
                                                                                                                 //
-        Pesquisas.update(id, {                                                                                  // 67
-            $set: dataObj                                                                                       // 68
-        });                                                                                                     // 67
-    },                                                                                                          // 70
-    'pesquisas.delete': function pesquisasDelete(id) {                                                          // 71
+        return pesquisasInsert;                                                                                 // 4
+    }(),                                                                                                        // 4
+    'pesquisas.update': function () {                                                                           // 60
+        function pesquisasUpdate(id, dataObj) {                                                                 // 4
                                                                                                                 //
-        console.warn('implementar pesquisas.insert');return;                                                    // 73
-        // check(id, String);                                                                                   //
-        Pesquisas.remove(id);                                                                                   // 75
-    }                                                                                                           // 76
+            console.warn('implementar pesquisas.update');return;                                                // 62
+                                                                                                                //
+            // check(id, String);                                                                               // 64
+            // check(dataObj, Pesquisas.simpleSchema());                                                        // 65
+                                                                                                                //
+            Pesquisas.update(id, {                                                                              // 67
+                $set: dataObj                                                                                   // 68
+            });                                                                                                 // 67
+        }                                                                                                       // 70
+                                                                                                                //
+        return pesquisasUpdate;                                                                                 // 4
+    }(),                                                                                                        // 4
+    'pesquisas.delete': function () {                                                                           // 71
+        function pesquisasDelete(id) {                                                                          // 4
+                                                                                                                //
+            console.warn('implementar pesquisas.insert');return;                                                // 73
+            // check(id, String);                                                                               // 74
+            Pesquisas.remove(id);                                                                               // 75
+        }                                                                                                       // 76
+                                                                                                                //
+        return pesquisasDelete;                                                                                 // 4
+    }()                                                                                                         // 4
 });                                                                                                             // 4
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -96,7 +116,7 @@ Meteor.publish('Pesquisas', function (filter, projection) {                     
                                                                                                                 //
     filter || (filter = {});                                                                                    // 7
                                                                                                                 //
-    // se existe um filtro                                                                                      //
+    // se existe um filtro                                                                                      // 9
     if ((typeof filter === "undefined" ? "undefined" : _typeof(filter)) === "object") {                         // 10
                                                                                                                 //
         if (Object.keys(projection).length === 0) {                                                             // 12
@@ -127,34 +147,59 @@ Meteor.publish('Pesquisas', function (filter, projection) {                     
                                                                                                                 //
 module.export({Pesquisas:function(){return Pesquisas}});var Pesquisas = new Ground.Collection('pesquisas', { connection: null });
                                                                                                                 //
-// var Api = new Restivus({                                                                                     //
-//     useDefaultAuth: true,                                                                                    //
-//     prettyJson: true                                                                                         //
-// });                                                                                                          //
+// var Api = new Restivus({                                                                                     // 3
+//     useDefaultAuth: true,                                                                                    // 4
+//     prettyJson: true                                                                                         // 5
+// });                                                                                                          // 6
                                                                                                                 //
-// Deny all client-side updates on the Cliente collection                                                       //
+                                                                                                                //
+// Deny all client-side updates on the Cliente collection                                                       // 9
 Pesquisas.deny({                                                                                                // 10
-    insert: function insert() {                                                                                 // 11
-        return false;                                                                                           // 11
-    },                                                                                                          // 11
-    // permite insert                                                                                           //
-    update: function update() {                                                                                 // 12
-        return false;                                                                                           // 12
-    },                                                                                                          // 12
-    remove: function remove() {                                                                                 // 13
-        return false;                                                                                           // 13
-    }                                                                                                           // 13
+    insert: function () {                                                                                       // 11
+        function insert() {                                                                                     // 10
+            return false;                                                                                       // 11
+        }                                                                                                       // 11
+                                                                                                                //
+        return insert;                                                                                          // 10
+    }(),                                                                                                        // 10
+    // permite insert                                                                                           // 11
+    update: function () {                                                                                       // 12
+        function update() {                                                                                     // 10
+            return false;                                                                                       // 12
+        }                                                                                                       // 12
+                                                                                                                //
+        return update;                                                                                          // 10
+    }(),                                                                                                        // 10
+    remove: function () {                                                                                       // 13
+        function remove() {                                                                                     // 10
+            return false;                                                                                       // 13
+        }                                                                                                       // 13
+                                                                                                                //
+        return remove;                                                                                          // 10
+    }()                                                                                                         // 10
 });                                                                                                             // 10
 Pesquisas.allow({                                                                                               // 15
-    insert: function insert() {                                                                                 // 16
-        return true;                                                                                            // 16
-    },                                                                                                          // 16
-    update: function update() {                                                                                 // 17
-        return true;                                                                                            // 17
-    },                                                                                                          // 17
-    remove: function remove() {                                                                                 // 18
-        return true;                                                                                            // 18
-    }                                                                                                           // 18
+    insert: function () {                                                                                       // 16
+        function insert() {                                                                                     // 16
+            return true;                                                                                        // 16
+        }                                                                                                       // 16
+                                                                                                                //
+        return insert;                                                                                          // 16
+    }(),                                                                                                        // 16
+    update: function () {                                                                                       // 17
+        function update() {                                                                                     // 17
+            return true;                                                                                        // 17
+        }                                                                                                       // 17
+                                                                                                                //
+        return update;                                                                                          // 17
+    }(),                                                                                                        // 17
+    remove: function () {                                                                                       // 18
+        function remove() {                                                                                     // 18
+            return true;                                                                                        // 18
+        }                                                                                                       // 18
+                                                                                                                //
+        return remove;                                                                                          // 18
+    }()                                                                                                         // 18
 });                                                                                                             // 15
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -195,18 +240,26 @@ var URLS = {                                                                    
 };                                                                                                              // 10
                                                                                                                 //
 Meteor.methods({                                                                                                // 16
-    sincronizarPesquisas: function sincronizarPesquisas(_ref) {                                                 // 17
-        var url = _ref.url;                                                                                     // 17
-        var options = _ref.options;                                                                             // 17
+    sincronizarPesquisas: function () {                                                                         // 17
+        function sincronizarPesquisas(_ref) {                                                                   // 16
+            var url = _ref.url;                                                                                 // 17
+            var options = _ref.options;                                                                         // 17
                                                                                                                 //
-        return HTTP.post(url, options);                                                                         // 18
-    },                                                                                                          // 19
-    sincronizarSalvarEntrevistas: function sincronizarSalvarEntrevistas(_ref2) {                                // 21
-        var url = _ref2.url;                                                                                    // 21
-        var options = _ref2.options;                                                                            // 21
+            return HTTP.post(url, options);                                                                     // 18
+        }                                                                                                       // 19
                                                                                                                 //
-        return HTTP.post(url, options);                                                                         // 22
-    }                                                                                                           // 23
+        return sincronizarPesquisas;                                                                            // 16
+    }(),                                                                                                        // 16
+    sincronizarSalvarEntrevistas: function () {                                                                 // 21
+        function sincronizarSalvarEntrevistas(_ref2) {                                                          // 16
+            var url = _ref2.url;                                                                                // 21
+            var options = _ref2.options;                                                                        // 21
+                                                                                                                //
+            return HTTP.post(url, options);                                                                     // 22
+        }                                                                                                       // 23
+                                                                                                                //
+        return sincronizarSalvarEntrevistas;                                                                    // 16
+    }()                                                                                                         // 16
 });                                                                                                             // 16
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -218,7 +271,7 @@ Meteor.methods({                                                                
 //                                                                                                              //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                 //
-module.import('./server/methods');/**                                                                           //
+module.import('./server/methods');/**                                                                           // 1
  * Created by lucas on 9/29/16.                                                                                 //
  */                                                                                                             //
                                                                                                                 // 4
@@ -243,34 +296,58 @@ module.import('./token.js');                                                    
 //                                                                                                              //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                 //
-module.export({Token:function(){return Token}});/**                                                             //
+module.export({Token:function(){return Token}});/**                                                             // 1
  * Created by lucas on 8/14/16.                                                                                 //
  */                                                                                                             //
 var Token = new Ground.Collection('token', { connection: null });                                               // 4
                                                                                                                 //
-// Deny all client-side updates on the Cliente collection                                                       //
+// Deny all client-side updates on the Cliente collection                                                       // 6
 Token.deny({                                                                                                    // 7
-    insert: function insert() {                                                                                 // 8
-        return false;                                                                                           // 8
-    },                                                                                                          // 8
-    // permite insert                                                                                           //
-    update: function update() {                                                                                 // 9
-        return false;                                                                                           // 9
-    },                                                                                                          // 9
-    remove: function remove() {                                                                                 // 10
-        return false;                                                                                           // 10
-    }                                                                                                           // 10
+    insert: function () {                                                                                       // 8
+        function insert() {                                                                                     // 7
+            return false;                                                                                       // 8
+        }                                                                                                       // 8
+                                                                                                                //
+        return insert;                                                                                          // 7
+    }(),                                                                                                        // 7
+    // permite insert                                                                                           // 8
+    update: function () {                                                                                       // 9
+        function update() {                                                                                     // 7
+            return false;                                                                                       // 9
+        }                                                                                                       // 9
+                                                                                                                //
+        return update;                                                                                          // 7
+    }(),                                                                                                        // 7
+    remove: function () {                                                                                       // 10
+        function remove() {                                                                                     // 7
+            return false;                                                                                       // 10
+        }                                                                                                       // 10
+                                                                                                                //
+        return remove;                                                                                          // 7
+    }()                                                                                                         // 7
 });                                                                                                             // 7
 Token.allow({                                                                                                   // 12
-    insert: function insert() {                                                                                 // 13
-        return true;                                                                                            // 13
-    },                                                                                                          // 13
-    update: function update() {                                                                                 // 14
-        return true;                                                                                            // 14
-    },                                                                                                          // 14
-    remove: function remove() {                                                                                 // 15
-        return true;                                                                                            // 15
-    }                                                                                                           // 15
+    insert: function () {                                                                                       // 13
+        function insert() {                                                                                     // 13
+            return true;                                                                                        // 13
+        }                                                                                                       // 13
+                                                                                                                //
+        return insert;                                                                                          // 13
+    }(),                                                                                                        // 13
+    update: function () {                                                                                       // 14
+        function update() {                                                                                     // 14
+            return true;                                                                                        // 14
+        }                                                                                                       // 14
+                                                                                                                //
+        return update;                                                                                          // 14
+    }(),                                                                                                        // 14
+    remove: function () {                                                                                       // 15
+        function remove() {                                                                                     // 15
+            return true;                                                                                        // 15
+        }                                                                                                       // 15
+                                                                                                                //
+        return remove;                                                                                          // 15
+    }()                                                                                                         // 15
 });                                                                                                             // 12
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -295,14 +372,14 @@ module.import("../../api/pesquisas/server_imports");module.import("../../api/tok
 //                                                                                                              //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                 //
-// e.g., BrowserPolicy.content.allowOriginForAll( 's3.amazonaws.com' );                                         //
+// e.g., BrowserPolicy.content.allowOriginForAll( 's3.amazonaws.com' );                                         // 1
 BrowserPolicy.content.allowSameOriginForAll();                                                                  // 2
 BrowserPolicy.content.allowFontDataUrl(); // Carregar fontes                                                    // 3
 BrowserPolicy.content.disallowInlineScripts(); // Desabilita a tag <script> no html                             // 4
 BrowserPolicy.content.disallowEval(); // nao permite uso de eval                                                // 5
-// BrowserPolicy.content.allowEval();                                                                           //
+// BrowserPolicy.content.allowEval();                                                                           // 6
 BrowserPolicy.content.allowOriginForAll('*');                                                                   // 7
-//BrowserPolicy.content.disallowInlineStyles()                                                                  //
+//BrowserPolicy.content.disallowInlineStyles()                                                                  // 8
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 },"fixtures.js":["../../api/pesquisas/pesquisas",function(require,exports,module){
@@ -325,7 +402,7 @@ console.log('Pesquisas removidas = ' + pesquisasRemovidas);                     
                                                                                                                 //
 var existePesquisa = Pesquisas.find().count() > 0;                                                              // 11
                                                                                                                 //
-// Insere ao menos uma pesquisa para fazer os testes                                                            //
+// Insere ao menos uma pesquisa para fazer os testes                                                            // 13
 if (!existePesquisa) {                                                                                          // 14
                                                                                                                 //
     var id = Pesquisas.insert({                                                                                 // 16

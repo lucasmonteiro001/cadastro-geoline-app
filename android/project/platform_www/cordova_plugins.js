@@ -1,46 +1,47 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
         "id": "cordova-plugin-geolocation.geolocation",
+        "file": "plugins/cordova-plugin-geolocation/www/android/geolocation.js",
+        "pluginId": "cordova-plugin-geolocation",
         "clobbers": [
             "navigator.geolocation"
         ]
     },
     {
-        "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
         "id": "cordova-plugin-geolocation.PositionError",
+        "file": "plugins/cordova-plugin-geolocation/www/PositionError.js",
+        "pluginId": "cordova-plugin-geolocation",
         "runs": true
     },
     {
-        "file": "plugins/cordova-plugin-whitelist/whitelist.js",
-        "id": "cordova-plugin-whitelist.whitelist",
-        "runs": true
-    },
-    {
-        "file": "plugins/cordova-plugin-meteor-webapp/www/webapp_local_server.js",
         "id": "cordova-plugin-meteor-webapp.WebAppLocalServer",
+        "file": "plugins/cordova-plugin-meteor-webapp/www/webapp_local_server.js",
+        "pluginId": "cordova-plugin-meteor-webapp",
         "merges": [
             "WebAppLocalServer"
         ]
     },
     {
-        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
         "id": "cordova-plugin-statusbar.statusbar",
+        "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
+        "pluginId": "cordova-plugin-statusbar",
         "clobbers": [
             "window.StatusBar"
         ]
     },
     {
-        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
         "id": "cordova-plugin-splashscreen.SplashScreen",
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "pluginId": "cordova-plugin-splashscreen",
         "clobbers": [
             "navigator.splashscreen"
         ]
     },
     {
-        "file": "plugins/cordova-plugin-device/www/device.js",
         "id": "cordova-plugin-device.device",
+        "file": "plugins/cordova-plugin-device/www/device.js",
+        "pluginId": "cordova-plugin-device",
         "clobbers": [
             "device"
         ]
@@ -49,13 +50,14 @@ module.exports = [
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-geolocation": "2.1.0",
-    "cordova-plugin-whitelist": "1.2.1",
-    "cordova-plugin-wkwebview-engine": "1.0.2",
-    "cordova-plugin-meteor-webapp": "1.3.0",
-    "cordova-plugin-statusbar": "2.1.2",
-    "cordova-plugin-splashscreen": "3.2.1",
-    "cordova-plugin-device": "1.1.2"
+    "cordova-plugin-compat": "1.0.0",
+    "cordova-plugin-geolocation": "2.3.0",
+    "cordova-plugin-whitelist": "1.3.0",
+    "cordova-plugin-wkwebview-engine": "1.1.0",
+    "cordova-plugin-meteor-webapp": "1.4.0",
+    "cordova-plugin-statusbar": "2.2.0",
+    "cordova-plugin-splashscreen": "4.0.0",
+    "cordova-plugin-device": "1.1.3"
 };
 // BOTTOM OF METADATA
 });

@@ -82,5 +82,3 @@ if (typeof Package === 'undefined') Package = {};
 });
 
 })();
-
-//# sourceMappingURL=browser-policy-common.js.map

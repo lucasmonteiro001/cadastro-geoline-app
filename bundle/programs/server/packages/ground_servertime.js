@@ -59,5 +59,3 @@ if (typeof Package === 'undefined') Package = {};
 });
 
 })();
-
-//# sourceMappingURL=ground_servertime.js.map

@@ -4,18 +4,27 @@
 var Meteor = Package.meteor.Meteor;
 var global = Package.meteor.global;
 var meteorEnv = Package.meteor.meteorEnv;
+var ECMAScript = Package.ecmascript.ECMAScript;
 var Collection2 = Package['aldeed:collection2-core'].Collection2;
 var _ = Package.underscore._;
 var LocalCollection = Package.minimongo.LocalCollection;
 var Minimongo = Package.minimongo.Minimongo;
 var check = Package.check.check;
 var Match = Package.check.Match;
+var meteorInstall = Package.modules.meteorInstall;
+var Buffer = Package.modules.Buffer;
+var process = Package.modules.process;
+var Symbol = Package['ecmascript-runtime'].Symbol;
+var Map = Package['ecmascript-runtime'].Map;
+var Set = Package['ecmascript-runtime'].Set;
+var meteorBabelHelpers = Package['babel-runtime'].meteorBabelHelpers;
+var Promise = Package.promise.Promise;
 var SimpleSchema = Package['aldeed:simple-schema'].SimpleSchema;
 var MongoObject = Package['aldeed:simple-schema'].MongoObject;
 var MongoInternals = Package.mongo.MongoInternals;
 var Mongo = Package.mongo.Mongo;
 
-(function(){
+var require = meteorInstall({"node_modules":{"meteor":{"aldeed:schema-index":{"lib":{"indexing.js":function(){
 
 ///////////////////////////////////////////////////////////////////////////////////////
 //                                                                                   //
@@ -23,87 +32,88 @@ var Mongo = Package.mongo.Mongo;
 //                                                                                   //
 ///////////////////////////////////////////////////////////////////////////////////////
                                                                                      //
-// Extend the schema options allowed by SimpleSchema
-SimpleSchema.extendOptions({
-  index: Match.Optional(Match.OneOf(Number, String, Boolean)),
-  unique: Match.Optional(Boolean),
-  sparse: Match.Optional(Boolean),
-});
-
-// Define validation error messages (legacy)
-if (!SimpleSchema.version || SimpleSchema.version < 2) {
-  SimpleSchema.messages({
-    notUnique: '[label] must be unique',
-  });
-}
-
-if (Meteor.isServer) {
-  Collection2.on('schema.attached', function (collection, ss) {
-    // Define validation error messages
-    if (ss.version >= 2) {
-      ss.messageBox.messages({
-        notUnique: '{{label}} must be unique',
-      });
-    }
-
-    function ensureIndex(index, indexName, unique, sparse) {
-      Meteor.startup(function () {
-        collection._collection._ensureIndex(index, {
-          background: true,
-          name: indexName,
-          unique: unique,
-          sparse: sparse
-        });
-      });
-    }
-
-    function dropIndex(indexName) {
-      Meteor.startup(function () {
-        try {
-          collection._collection._dropIndex(indexName);
-        } catch (err) {
-          // no index with that name, which is what we want
-        }
-      });
-    }
-
-    const propName = ss.version === 2 ? 'mergedSchema' : 'schema';
-
+// Extend the schema options allowed by SimpleSchema                                 // 1
+SimpleSchema.extendOptions({                                                         // 2
+  index: Match.Optional(Match.OneOf(Number, String, Boolean)),                       // 3
+  unique: Match.Optional(Boolean),                                                   // 4
+  sparse: Match.Optional(Boolean)                                                    // 5
+});                                                                                  // 2
+                                                                                     //
+// Define validation error messages (legacy)                                         // 8
+if (!SimpleSchema.version || SimpleSchema.version < 2) {                             // 9
+  SimpleSchema.messages({                                                            // 10
+    notUnique: '[label] must be unique'                                              // 11
+  });                                                                                // 10
+}                                                                                    // 13
+                                                                                     //
+if (Meteor.isServer) {                                                               // 15
+  Collection2.on('schema.attached', function (collection, ss) {                      // 16
+    // Define validation error messages                                              // 17
+    if (ss.version >= 2) {                                                           // 18
+      ss.messageBox.messages({                                                       // 19
+        notUnique: '{{label}} must be unique'                                        // 20
+      });                                                                            // 19
+    }                                                                                // 22
+                                                                                     //
+    function ensureIndex(index, indexName, unique, sparse) {                         // 24
+      Meteor.startup(function () {                                                   // 25
+        collection._collection._ensureIndex(index, {                                 // 26
+          background: true,                                                          // 27
+          name: indexName,                                                           // 28
+          unique: unique,                                                            // 29
+          sparse: sparse                                                             // 30
+        });                                                                          // 26
+      });                                                                            // 32
+    }                                                                                // 33
+                                                                                     //
+    function dropIndex(indexName) {                                                  // 35
+      Meteor.startup(function () {                                                   // 36
+        try {                                                                        // 37
+          collection._collection._dropIndex(indexName);                              // 38
+        } catch (err) {                                                              // 39
+          // no index with that name, which is what we want                          // 40
+        }                                                                            // 41
+      });                                                                            // 42
+    }                                                                                // 43
+                                                                                     //
+    var propName = ss.version === 2 ? 'mergedSchema' : 'schema';                     // 45
+                                                                                     //
     // Loop over fields definitions and ensure collection indexes (server side only)
-    _.each(ss[propName](), function(definition, fieldName) {
-      if ('index' in definition || definition.unique === true) {
-        var index = {}, indexValue;
-        // If they specified `unique: true` but not `index`,
-        // we assume `index: 1` to set up the unique index in mongo
-        if ('index' in definition) {
-          indexValue = definition.index;
-          if (indexValue === true) indexValue = 1;
-        } else {
-          indexValue = 1;
-        }
-        var indexName = 'c2_' + fieldName;
-        // In the index object, we want object array keys without the ".$" piece
-        var idxFieldName = fieldName.replace(/\.\$\./g, ".");
-        index[idxFieldName] = indexValue;
+    _.each(ss[propName](), function (definition, fieldName) {                        // 48
+      if ('index' in definition || definition.unique === true) {                     // 49
+        var index = {},                                                              // 50
+            indexValue;                                                              // 50
+        // If they specified `unique: true` but not `index`,                         // 51
+        // we assume `index: 1` to set up the unique index in mongo                  // 52
+        if ('index' in definition) {                                                 // 53
+          indexValue = definition.index;                                             // 54
+          if (indexValue === true) indexValue = 1;                                   // 55
+        } else {                                                                     // 56
+          indexValue = 1;                                                            // 57
+        }                                                                            // 58
+        var indexName = 'c2_' + fieldName;                                           // 59
+        // In the index object, we want object array keys without the ".$" piece     // 60
+        var idxFieldName = fieldName.replace(/\.\$\./g, ".");                        // 61
+        index[idxFieldName] = indexValue;                                            // 62
         var unique = !!definition.unique && (indexValue === 1 || indexValue === -1);
-        var sparse = definition.sparse || false;
-
-        // If unique and optional, force sparse to prevent errors
-        if (!sparse && unique && definition.optional) sparse = true;
-
-        if (indexValue === false) {
-          dropIndex(indexName);
-        } else {
-          ensureIndex(index, indexName, unique, sparse);
-        }
-      }
-    });
-  });
-}
+        var sparse = definition.sparse || false;                                     // 64
+                                                                                     //
+        // If unique and optional, force sparse to prevent errors                    // 66
+        if (!sparse && unique && definition.optional) sparse = true;                 // 67
+                                                                                     //
+        if (indexValue === false) {                                                  // 69
+          dropIndex(indexName);                                                      // 70
+        } else {                                                                     // 71
+          ensureIndex(index, indexName, unique, sparse);                             // 72
+        }                                                                            // 73
+      }                                                                              // 74
+    });                                                                              // 75
+  });                                                                                // 76
+}                                                                                    // 77
 ///////////////////////////////////////////////////////////////////////////////////////
 
-}).call(this);
-
+}}}}}},{"extensions":[".js",".json"]});
+require("./node_modules/meteor/aldeed:schema-index/lib/indexing.js");
 
 /* Exports */
 if (typeof Package === 'undefined') Package = {};

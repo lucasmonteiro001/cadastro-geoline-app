@@ -2,13 +2,13 @@
   "format": "web-program-pre1",
   "manifest": [
     {
-      "path": "503359cf4524840747264c1a54c534b612a8da5a.js",
+      "path": "8a853365962653f10adf897fcde3ce3c33315024.js",
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/503359cf4524840747264c1a54c534b612a8da5a.js?meteor_js_resource=true",
-      "size": 1255842,
-      "hash": "503359cf4524840747264c1a54c534b612a8da5a"
+      "url": "/8a853365962653f10adf897fcde3ce3c33315024.js?meteor_js_resource=true",
+      "size": 1263765,
+      "hash": "8a853365962653f10adf897fcde3ce3c33315024"
     },
     {
       "path": "cd4144759a16c8c73315c50929a0325637d23c20.css",
@@ -84,7 +84,7 @@
     }
   ],
   "cordovaCompatibilityVersions": {
-    "android": "5bb3170f850616141c63f22cec180e5fc155b198",
-    "ios": "1bffccc040ff2ae7b48b9fd94cb109840f59c2a4"
+    "android": "a90f0766901b5f393796cc0eb52d5998bfccf400",
+    "ios": "abd5555703bcd14aea0c164d3f40127fdda6a2fc"
   }
 }

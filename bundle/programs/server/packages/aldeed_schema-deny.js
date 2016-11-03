@@ -65,5 +65,3 @@ if (typeof Package === 'undefined') Package = {};
 Package['aldeed:schema-deny'] = {};
 
 })();
-
-//# sourceMappingURL=aldeed_schema-deny.js.map

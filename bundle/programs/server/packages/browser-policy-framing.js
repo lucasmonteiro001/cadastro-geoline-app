@@ -65,5 +65,3 @@ if (typeof Package === 'undefined') Package = {};
 Package['browser-policy-framing'] = {};
 
 })();
-
-//# sourceMappingURL=browser-policy-framing.js.map

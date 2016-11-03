@@ -47,5 +47,3 @@ if (typeof Package === 'undefined') Package = {};
 });
 
 })();
-
-//# sourceMappingURL=raix_eventemitter.js.map

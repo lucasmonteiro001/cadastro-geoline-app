@@ -405,5 +405,3 @@ if (typeof Package === 'undefined') Package = {};
 });
 
 })();
-
-//# sourceMappingURL=aslagle_reactive-table.js.map

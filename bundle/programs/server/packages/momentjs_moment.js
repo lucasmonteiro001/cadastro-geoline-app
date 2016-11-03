@@ -4289,5 +4289,3 @@ if (typeof Package === 'undefined') Package = {};
 });
 
 })();
-
-//# sourceMappingURL=momentjs_moment.js.map

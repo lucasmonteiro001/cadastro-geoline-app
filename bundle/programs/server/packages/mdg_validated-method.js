@@ -31,7 +31,7 @@ var require = meteorInstall({"node_modules":{"meteor":{"mdg:validated-method":{"
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                                                                                       //
 var _classCallCheck;module.import('babel-runtime/helpers/classCallCheck',{"default":function(v){_classCallCheck=v}});
-/* global ValidatedMethod:true */                                                                                     //
+/* global ValidatedMethod:true */                                                                                     // 1
                                                                                                                       //
 ValidatedMethod = function () {                                                                                       // 3
   function ValidatedMethod(options) {                                                                                 // 4
@@ -39,22 +39,22 @@ ValidatedMethod = function () {                                                 
                                                                                                                       //
     _classCallCheck(this, ValidatedMethod);                                                                           // 4
                                                                                                                       //
-    // Default to no mixins                                                                                           //
+    // Default to no mixins                                                                                           // 5
     options.mixins = options.mixins || [];                                                                            // 6
     check(options.mixins, [Function]);                                                                                // 7
     check(options.name, String);                                                                                      // 8
     options = applyMixins(options, options.mixins);                                                                   // 9
                                                                                                                       //
-    // connection argument defaults to Meteor, which is where Methods are defined on client and                       //
-    // server                                                                                                         //
+    // connection argument defaults to Meteor, which is where Methods are defined on client and                       // 11
+    // server                                                                                                         // 12
     options.connection = options.connection || Meteor;                                                                // 13
                                                                                                                       //
-    // Allow validate: null shorthand for methods that take no arguments                                              //
+    // Allow validate: null shorthand for methods that take no arguments                                              // 15
     if (options.validate === null) {                                                                                  // 16
       options.validate = function () {};                                                                              // 17
     }                                                                                                                 // 18
                                                                                                                       //
-    // If this is null/undefined, make it an empty object                                                             //
+    // If this is null/undefined, make it an empty object                                                             // 20
     options.applyOptions = options.applyOptions || {};                                                                // 21
                                                                                                                       //
     check(options, Match.ObjectIncluding({                                                                            // 23
@@ -66,24 +66,24 @@ ValidatedMethod = function () {                                                 
       applyOptions: Object                                                                                            // 29
     }));                                                                                                              // 23
                                                                                                                       //
-    // Default options passed to Meteor.apply, can be overridden with applyOptions                                    //
+    // Default options passed to Meteor.apply, can be overridden with applyOptions                                    // 32
     var defaultApplyOptions = {                                                                                       // 33
-      // Make it possible to get the ID of an inserted item                                                           //
+      // Make it possible to get the ID of an inserted item                                                           // 34
       returnStubValue: true,                                                                                          // 35
                                                                                                                       //
-      // Don't call the server method if the client stub throws an error, so that we don't end                        //
-      // up doing validations twice                                                                                   //
+      // Don't call the server method if the client stub throws an error, so that we don't end                        // 37
+      // up doing validations twice                                                                                   // 38
       throwStubExceptions: true                                                                                       // 39
     };                                                                                                                // 33
                                                                                                                       //
     options.applyOptions = _.extend({}, defaultApplyOptions, options.applyOptions);                                   // 42
                                                                                                                       //
-    // Attach all options to the ValidatedMethod instance                                                             //
+    // Attach all options to the ValidatedMethod instance                                                             // 44
     _.extend(this, options);                                                                                          // 45
                                                                                                                       //
     var method = this;                                                                                                // 47
     this.connection.methods((_connection$methods = {}, _connection$methods[options.name] = function (args) {          // 48
-      // Silence audit-argument-checks since arguments are always checked when using this package                     //
+      // Silence audit-argument-checks since arguments are always checked when using this package                     // 50
       check(args, Match.Any);                                                                                         // 51
       var methodInvocation = this;                                                                                    // 52
                                                                                                                       //
@@ -91,50 +91,58 @@ ValidatedMethod = function () {                                                 
     }, _connection$methods));                                                                                         // 55
   }                                                                                                                   // 57
                                                                                                                       //
-  ValidatedMethod.prototype.call = function call(args, callback) {                                                    // 3
-    // Accept calling with just a callback                                                                            //
-    if (_.isFunction(args)) {                                                                                         // 61
-      callback = args;                                                                                                // 62
-      args = {};                                                                                                      // 63
-    }                                                                                                                 // 64
+  ValidatedMethod.prototype.call = function () {                                                                      // 3
+    function call(args, callback) {                                                                                   // 3
+      // Accept calling with just a callback                                                                          // 60
+      if (_.isFunction(args)) {                                                                                       // 61
+        callback = args;                                                                                              // 62
+        args = {};                                                                                                    // 63
+      }                                                                                                               // 64
                                                                                                                       //
-    try {                                                                                                             // 66
-      return this.connection.apply(this.name, [args], this.applyOptions, callback);                                   // 67
-    } catch (err) {                                                                                                   // 68
-      if (callback) {                                                                                                 // 69
-        // Get errors from the stub in the same way as from the server-side method                                    //
-        callback(err);                                                                                                // 71
-      } else {                                                                                                        // 72
-        // No callback passed, throw instead of silently failing; this is what                                        //
-        // "normal" Methods do if you don't pass a callback.                                                          //
-        throw err;                                                                                                    // 75
-      }                                                                                                               // 76
-    }                                                                                                                 // 77
-  };                                                                                                                  // 78
+      try {                                                                                                           // 66
+        return this.connection.apply(this.name, [args], this.applyOptions, callback);                                 // 67
+      } catch (err) {                                                                                                 // 68
+        if (callback) {                                                                                               // 69
+          // Get errors from the stub in the same way as from the server-side method                                  // 70
+          callback(err);                                                                                              // 71
+        } else {                                                                                                      // 72
+          // No callback passed, throw instead of silently failing; this is what                                      // 73
+          // "normal" Methods do if you don't pass a callback.                                                        // 74
+          throw err;                                                                                                  // 75
+        }                                                                                                             // 76
+      }                                                                                                               // 77
+    }                                                                                                                 // 78
                                                                                                                       //
-  ValidatedMethod.prototype._execute = function _execute(methodInvocation, args) {                                    // 3
-    methodInvocation = methodInvocation || {};                                                                        // 81
+    return call;                                                                                                      // 3
+  }();                                                                                                                // 3
                                                                                                                       //
-    // Add `this.name` to reference the Method name                                                                   //
-    methodInvocation.name = this.name;                                                                                // 84
+  ValidatedMethod.prototype._execute = function () {                                                                  // 3
+    function _execute(methodInvocation, args) {                                                                       // 3
+      methodInvocation = methodInvocation || {};                                                                      // 81
                                                                                                                       //
-    var validateResult = this.validate.bind(methodInvocation)(args);                                                  // 86
+      // Add `this.name` to reference the Method name                                                                 // 83
+      methodInvocation.name = this.name;                                                                              // 84
                                                                                                                       //
-    if (typeof validateResult !== 'undefined') {                                                                      // 88
-      throw new Error('Returning from validate doesn\'t do anything; perhaps you meant to throw an error?');          // 89
-    }                                                                                                                 // 91
+      var validateResult = this.validate.bind(methodInvocation)(args);                                                // 86
                                                                                                                       //
-    return this.run.bind(methodInvocation)(args);                                                                     // 93
-  };                                                                                                                  // 94
+      if (typeof validateResult !== 'undefined') {                                                                    // 88
+        throw new Error('Returning from validate doesn\'t do anything; perhaps you meant to throw an error?');        // 89
+      }                                                                                                               // 91
+                                                                                                                      //
+      return this.run.bind(methodInvocation)(args);                                                                   // 93
+    }                                                                                                                 // 94
+                                                                                                                      //
+    return _execute;                                                                                                  // 3
+  }();                                                                                                                // 3
                                                                                                                       //
   return ValidatedMethod;                                                                                             // 3
 }();                                                                                                                  // 3
                                                                                                                       //
-// Mixins get a chance to transform the arguments before they are passed to the actual Method                         //
+// Mixins get a chance to transform the arguments before they are passed to the actual Method                         // 97
 function applyMixins(args, mixins) {                                                                                  // 98
-  // You can pass nested arrays so that people can ship mixin packs                                                   //
+  // You can pass nested arrays so that people can ship mixin packs                                                   // 99
   var flatMixins = _.flatten(mixins);                                                                                 // 100
-  // Save name of the method here, so we can attach it to potential error messages                                    //
+  // Save name of the method here, so we can attach it to potential error messages                                    // 101
   var _args = args;                                                                                                   // 98
   var name = _args.name;                                                                                              // 98
                                                                                                                       //
