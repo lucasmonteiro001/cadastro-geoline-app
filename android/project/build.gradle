@@ -89,6 +89,7 @@ ext {
 
 // PLUGIN GRADLE EXTENSIONS START
 apply from: "cordova-plugin-meteor-webapp/lucas-build-extras.gradle"
+apply from: "cordova-plugin-meteor-webapp/cadastromultifinalitario-build-extras.gradle"
 // PLUGIN GRADLE EXTENSIONS END
 
 def hasBuildExtras = file('build-extras.gradle').exists()

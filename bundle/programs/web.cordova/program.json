@@ -2,22 +2,22 @@
   "format": "web-program-pre1",
   "manifest": [
     {
-      "path": "8a853365962653f10adf897fcde3ce3c33315024.js",
+      "path": "d773889f0958c0d093b23cdfeae3e0f5cacf4ef3.js",
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/8a853365962653f10adf897fcde3ce3c33315024.js?meteor_js_resource=true",
-      "size": 1263765,
-      "hash": "8a853365962653f10adf897fcde3ce3c33315024"
+      "url": "/d773889f0958c0d093b23cdfeae3e0f5cacf4ef3.js?meteor_js_resource=true",
+      "size": 1283583,
+      "hash": "d773889f0958c0d093b23cdfeae3e0f5cacf4ef3"
     },
     {
-      "path": "cd4144759a16c8c73315c50929a0325637d23c20.css",
+      "path": "518cf3acf5fbf0ae7fdc68c7eb4e36d9a30e525c.css",
       "where": "client",
       "type": "css",
       "cacheable": true,
-      "url": "/cd4144759a16c8c73315c50929a0325637d23c20.css?meteor_css_resource=true",
-      "size": 51459,
-      "hash": "cd4144759a16c8c73315c50929a0325637d23c20"
+      "url": "/518cf3acf5fbf0ae7fdc68c7eb4e36d9a30e525c.css?meteor_css_resource=true",
+      "size": 53396,
+      "hash": "518cf3acf5fbf0ae7fdc68c7eb4e36d9a30e525c"
     },
     {
       "path": "packages/fortawesome_fontawesome/upstream/fonts/fontawesome-webfont.eot",
@@ -25,8 +25,8 @@
       "type": "asset",
       "cacheable": false,
       "url": "/packages/fortawesome_fontawesome/upstream/fonts/fontawesome-webfont.eot",
-      "size": 76518,
-      "hash": "965ce8f688fedbeed504efd498bc9c1622d12362"
+      "size": 165742,
+      "hash": "2426ebdb07a52aac2ab4a81c0925a28b4f220dd1"
     },
     {
       "path": "packages/fortawesome_fontawesome/upstream/fonts/fontawesome-webfont.svg",
@@ -34,8 +34,8 @@
       "type": "asset",
       "cacheable": false,
       "url": "/packages/fortawesome_fontawesome/upstream/fonts/fontawesome-webfont.svg",
-      "size": 391622,
-      "hash": "c0522272bbaef2acb3d341912754d6ea2d0ecfc0"
+      "size": 444379,
+      "hash": "8a54b14be2971294ebc55e88eba4335fc1f03f14"
     },
     {
       "path": "packages/fortawesome_fontawesome/upstream/fonts/fontawesome-webfont.ttf",
@@ -43,8 +43,8 @@
       "type": "asset",
       "cacheable": false,
       "url": "/packages/fortawesome_fontawesome/upstream/fonts/fontawesome-webfont.ttf",
-      "size": 152796,
-      "hash": "61d8d967807ef12598d81582fa95b9f600c3ee01"
+      "size": 165548,
+      "hash": "f5aa2b6f39e74f8b0b9378788de43e92541cc9bd"
     },
     {
       "path": "packages/fortawesome_fontawesome/upstream/fonts/fontawesome-webfont.woff",
@@ -52,8 +52,8 @@
       "type": "asset",
       "cacheable": false,
       "url": "/packages/fortawesome_fontawesome/upstream/fonts/fontawesome-webfont.woff",
-      "size": 90412,
-      "hash": "6d7e6a5fc802b13694d8820fc0138037c0977d2e"
+      "size": 98024,
+      "hash": "6cf66696e39470a4e4f7c8045dd397a92c644834"
     },
     {
       "path": "packages/fortawesome_fontawesome/upstream/fonts/fontawesome-webfont.woff2",
@@ -61,8 +61,8 @@
       "type": "asset",
       "cacheable": false,
       "url": "/packages/fortawesome_fontawesome/upstream/fonts/fontawesome-webfont.woff2",
-      "size": 71896,
-      "hash": "97e438cc545714309882fbceadbf344fcaddcec5"
+      "size": 77160,
+      "hash": "ae0630c6527a682db3d225242d368d30755a33fb"
     },
     {
       "path": "packages/fortawesome_fontawesome/upstream/fonts/FontAwesome.otf",
@@ -70,8 +70,8 @@
       "type": "asset",
       "cacheable": false,
       "url": "/packages/fortawesome_fontawesome/upstream/fonts/FontAwesome.otf",
-      "size": 124988,
-      "hash": "1b22f17fdc38070de50e6d1ab3a32da71aa2d819"
+      "size": 134808,
+      "hash": "ea426b3cefb5d8c0c148e7476965e814043c7a7b"
     },
     {
       "path": "app/img/rodape-geoline.png",
@@ -80,7 +80,7 @@
       "cacheable": false,
       "url": "/img/rodape-geoline.png",
       "size": 7287,
-      "hash": "452860656e9ceaabc6e978fe6373f24d432c6584"
+      "hash": "70cef8f15349159c9108d9d5ac46b5e4d5274816"
     }
   ],
   "cordovaCompatibilityVersions": {

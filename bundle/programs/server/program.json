@@ -285,7 +285,6 @@
       "path": "packages/arillo_flow-router-helpers.js"
     },
     {
-      "node_modules": "npm/node_modules/meteor/momentjs_moment/node_modules",
       "path": "packages/momentjs_moment.js"
     },
     {
